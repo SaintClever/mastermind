@@ -28,20 +28,70 @@ def game():
   print(codemaker, codebreaker)
 
 
-  tracked_attempts = []
+  data = f'''
+  Example Run:
+  Game initializes and selects “0 1 3 5”
+  Player guesses 2 2 4 6 game responds “all incorrect”
+  Player guesses 0 2 4 6 game responds “1 correct number and 1 correct location”
+  Player guesses 2 2 1 1 game responds “1 correct number and 0 correct location”
+  Player guesses 0 1 5 6 game responds “3 correct numbers and 2 correct location”
+  '''
+
+  game_attempts = []
+
+  all_incorrect = ""
+  correct_number = ""
+  correct_location = ""
+  correct_number_and_location = ""
+
+  all_incorrect_list = []
+  correct_number_list = []
+  correct_location_list = []
+  correct_number_and_location_list = []
 
   for i in range(len(codemaker)):
     if codebreaker[i] != codemaker[i] and codebreaker[i] not in codemaker:
-      return f"{codebreaker} all incorrect"
-    
-    if codebreaker[i] == codemaker[i] and codebreaker[i] in codemaker:
-      return f"{codebreaker} 1 correct number and 1 correct location"
+      all_incorrect += codebreaker[i]
+      
+      if len(all_incorrect) == len(codemaker):
+        all_incorrect_list = list(all_incorrect)
 
-    if codebreaker[i] == codemaker[i] and codebreaker[i] not in codemaker:
-      return f""
+    if codebreaker[i] == codemaker[i]:
+      correct_number_and_location += codebreaker[i]
+      correct_number_and_location_list = list(correct_number_and_location)
+
+      if len(correct_number_and_location) > 1:
+        correct_number_and_location_list = list(correct_number_and_location)
+
+    elif codebreaker[i] in codemaker and codebreaker[i] != codemaker[i]:
+      correct_number += codebreaker[i]
+      correct_number_list = list(correct_number)
 
 
+  print("a", all_incorrect)
+  print("b", correct_number)
+  print("c", correct_location)
+  print("d", correct_number_and_location)
 
+  print("e", all_incorrect_list)
+  print("f", correct_number_list)
+  print("g", correct_location_list)
+  print("h", correct_number_and_location_list)
+
+  if all_incorrect_list:
+    print("all incorrect")
+  if correct_number_and_location_list:
+    print("1 correct number and 1 correct location")
+  if correct_number_list:
+    print("1 correct number and 0 correct location")
+  if correct_number_list and correct_number_and_location_list:
+    print("3 correct numbers and 2 correct location")
+
+  # return f"{codebreaker} all incorrect"
+  # return f"{codebreaker} 1 correct number and 1 correct location"
+  # return f"{codebreaker} 1 correct number and 0 correct location"
+  # return f"{codebreaker} 3 correct number and 2 correct location"
+  
 
 
 
