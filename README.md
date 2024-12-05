@@ -8,6 +8,7 @@ Installation instructions:
     - mac: <code>source venv/bin/activate</code>
     - win: <code>source venv/scripts/activate</code>
   - Install package: <code>pip3 install requests</code>
+  - After your installation is complete and currenlty located in your mastermind folder run <code>python3 main.py</code> in your terminal 
 <br>
 <br>
 

@@ -3,13 +3,13 @@ import requests
 
 
 # Request made to API
-response = requests.get("https://www.random.org/integers/?num=4&min=0&max=7&col=1&base=10&format=plain&rnd=new")
+# response = requests.get("https://www.random.org/integers/?num=4&min=0&max=7&col=1&base=10&format=plain&rnd=new")
 
 # Format response and store in list
-codemaker = response.text.replace("\n", " ").split()
+# codemaker = response.text.replace("\n", " ").split()
 
 # Game test array
-# codemaker = ["0", "1", "3", "5"]
+codemaker = ["0", "1", "3", "5"]
 
 
 # Game initializes
@@ -21,6 +21,7 @@ def game(game_loop):
   while game_loop != 0:
     pin = "\u26AB"
     grid = game_loop * f"\n| {pin} {pin} {pin} {pin} |"
+    print(f"\nAttempts left: {game_loop}")
     print(grid)
     print(game_attempts)
     game_loop -= 1
@@ -65,10 +66,10 @@ def game(game_loop):
     # print("c", correct_location)
     # print("d", correct_number_and_location)
 
-    # print("e", all_incorrect_list)
-    # print("f", correct_number_list)
-    # print("g", correct_location_list)
-    # print("h", correct_number_and_location_list)
+    print("e", all_incorrect_list)
+    print("f", correct_number_list)
+    print("g", correct_location_list)
+    print("h", correct_number_and_location_list)
 
     # Clear terminal
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -77,18 +78,23 @@ def game(game_loop):
       print("all incorrect")
 
     elif correct_number_list and correct_number_and_location_list:
-      print(f"a: {len(correct_number_list) + len(correct_number_and_location_list)} correct numbers and {len(correct_number_and_location_list)} correct location")
+      print(f"a {len(correct_number_list) + len(correct_number_and_location_list)} correct numbers and {len(correct_number_and_location_list)} correct location")
 
     elif correct_number_list:
       # correct_number_list[0] should all have the same number so I only need the first one
-      print(f"b: {len(correct_number_list[0])} correct number and {len(correct_number_and_location_list)} correct location")
+      print(f"b {len(correct_number_list)} correct number and {len(correct_number_and_location_list)} correct location")
 
     elif correct_number_and_location_list:
-      print(f"c: {len(correct_number_and_location_list)} correct number and {len(correct_number_and_location_list)} correct location")
+      print(f"c {len(correct_number_and_location_list)} correct number and {len(correct_number_and_location_list)} correct location")
     
     # Add game attempts and attempt count
     game_attempts += f"\n{"".join(user_input)}"
     attempt_count += 1
+
+  if True:
+    print("The player had guess a correct number")
+    print("The player had guessed a correct number and its correct location")
+    print("The player’s guess was incorrect")
 
 # Game function with count being the length of game
 count = 10
