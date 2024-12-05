@@ -80,12 +80,17 @@ def game():
 
   if all_incorrect_list:
     print("all incorrect")
-  if correct_number_and_location_list:
-    print("1 correct number and 1 correct location")
-  if correct_number_list:
-    print("1 correct number and 0 correct location")
-  if correct_number_list and correct_number_and_location_list:
-    print("3 correct numbers and 2 correct location")
+
+  elif correct_number_list and correct_number_and_location_list:
+    print(f"LLL {len( correct_number_list) + len( correct_number_and_location_list)} correct numbers and {len(correct_number_and_location_list)} correct location")
+
+  elif correct_number_list:
+    # correct_number_list[0] should all have the same number so I only need the first one
+    print(f"LL {len(correct_number_list[0])} correct number and {len(correct_number_and_location_list)} correct location")
+
+  elif correct_number_and_location_list:
+    print(f"L {len(correct_number_and_location_list)} correct number and {len(correct_number_and_location_list)} correct location")
+
 
   # return f"{codebreaker} all incorrect"
   # return f"{codebreaker} 1 correct number and 1 correct location"
