@@ -3,16 +3,15 @@ import requests
 
 
 # # Request made to API
-response = requests.get("https://www.random.org/integers/?num=4&min=0&max=7&col=1&base=10&format=plain&rnd=new")
+# response = requests.get("https://www.random.org/integers/?num=4&min=0&max=7&col=1&base=10&format=plain&rnd=new")
 
 # # Format response and store in list
-codemaker = response.text.replace("\n", " ").split()
-# codemaker = ["0", "1", "3", "5"]
+# codemaker = response.text.replace("\n", " ").split()
+codemaker = ["0", "1", "3", "5"]
 
 
 # Game initializes
 def game(game_loop):
-  os.system('cls' if os.name == 'nt' else 'clear')
   attempt_count = 1
   game_attempts = ""
 
@@ -78,11 +77,10 @@ def game(game_loop):
     # print("h", correct_number_and_location_list)
 
 
-    
+    os.system('cls' if os.name == 'nt' else 'clear')
 
     if all_incorrect_list:
       print("all incorrect")
-      game_attempts += f"\n{", ".join(all_incorrect_list)}"
 
     elif correct_number_list and correct_number_and_location_list:
       print(f"a: {len(correct_number_list) + len(correct_number_and_location_list)} correct numbers and {len(correct_number_and_location_list)} correct location")
@@ -94,7 +92,9 @@ def game(game_loop):
     elif correct_number_and_location_list:
       print(f"c: {len(correct_number_and_location_list)} correct number and {len(correct_number_and_location_list)} correct location")
     
+    game_attempts += f"\n{"".join(user_input)}"
     attempt_count += 1
+
 # Game function with count being the length of game
 count = 4
 game(count)
