@@ -91,5 +91,5 @@ def game(game_loop):
     attempt_count += 1
 
 # Game function with count being the length of game
-count = 4
+count = 10
 game(count)
