@@ -1,5 +1,8 @@
 import os
 import requests
+from rich.console import Console
+
+console = Console()
 
 
 # Request made to API
@@ -23,13 +26,13 @@ def game(game_loop):
   while game_loop != 0:
     pin = "\u2686"
     grid = game_loop * f"\n|  {pin}   {pin}   {pin}   {pin}  |"
-    print(f"\nAttempts left: {game_loop}")
+    console.print(f"\nAttempts left: {game_loop}", style="bold red")
     print(grid)
     print(game_attempts)
     game_loop -= 1
 
     print(f"\n{cipher}\n")
-    print("To end game type: exit")
+    print("To end the game type: exit")
 
     # User Input
     try:
@@ -96,20 +99,20 @@ def game(game_loop):
 
     # If a this list exit that means all numbers are correct. WON THE GAME HERE
     if all_incorrect_list:
-      print("all incorrect")
+      console.print("all incorrect", style="bold red")
 
     # Else if a correct number exist and a correct location exist we add the items within the list by getting list len for both
     elif correct_number_list and correct_number_and_location_list:
-      print(f"a {len(correct_number_list) + len(correct_number_and_location_list)} correct numbers and {len(correct_number_and_location_list)} correct location")
+      console.print(f"a {len(correct_number_list) + len(correct_number_and_location_list)} correct numbers and {len(correct_number_and_location_list)} correct location", style="bold magenta")
 
     # If only a correct location exist we just get the lens for both correct numbers and location
     elif correct_number_list:
       # correct_number_list[0] should all have the same number so I only need the first item in the list technically
-      print(f"b {len(correct_number_list)} correct number and {len(correct_number_and_location_list)} correct location")
+      console.print(f"b {len(correct_number_list)} correct number and {len(correct_number_and_location_list)} correct location", style="bold magenta")
 
-    # I Think I don't need the below because the second elif handles this... I think
+    # For all correct numbers in the right place
     elif correct_number_and_location_list:
-      print(f"c {len(correct_number_and_location_list)} correct number and {len(correct_number_and_location_list)} correct location")
+      console.print(f"c {len(correct_number_and_location_list)} correct number and {len(correct_number_and_location_list)} correct location", style="bold green")
     
     # Add game attempts and attempt count
     game_attempts += f"|  {" ".join(user_input)}  |\n"
