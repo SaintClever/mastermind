@@ -6,14 +6,14 @@ console = Console()
 
 
 # Request made to API
-# response = requests.get("https://www.random.org/integers/?num=4&min=0&max=7&col=1&base=10&format=plain&rnd=new")
+response = requests.get("https://www.random.org/integers/?num=4&min=0&max=7&col=1&base=10&format=plain&rnd=new")
 
 # Format response and store in list
-# cipher = response.text.replace("\n", " ").split()
+cipher = response.text.replace("\n", " ").split()
 
 # Game test array
-cipher = ["0", "1", "3", "5"]
-
+# cipher = ["0", "1", "3", "5"]
+loop_count = 10
 
 # Game initializes
 def game(game_loop):
@@ -31,8 +31,8 @@ def game(game_loop):
     print(game_attempts)
     game_loop -= 1
 
-    print(f"\n{cipher}\n")
-    print("To end the game type: exit")
+    # print(f"\n{cipher}\n")
+    print("To quit or restart the game type: exit")
 
     # User Input
     try:
@@ -92,13 +92,13 @@ def game(game_loop):
     # print("c", correct_location)
     # print("d", correct_number_and_location)
 
-    print("e", all_incorrect_list)
-    print("f", correct_number_list)
-    print("g", correct_location_list)
-    print("h", correct_number_and_location_list)
+    # print("e", all_incorrect_list)
+    # print("f", correct_number_list)
+    # print("g", correct_location_list)
+    # print("h", correct_number_and_location_list)
 
     # Clear terminal
-    # os.system('cls' if os.name == 'nt' else 'clear')
+    os.system('cls' if os.name == 'nt' else 'clear')
 
     # If a this list exit that means all numbers are correct. WON THE GAME HERE
     if all_incorrect_list:
@@ -112,28 +112,39 @@ def game(game_loop):
       else:
         numbers = len(correct_number_and_location_list)
 
-      console.print(f"a {numbers} correct numbers and {len(correct_number_and_location_list)} correct location", style="bold magenta")
+      console.print(f"{numbers} correct numbers and {len(correct_number_and_location_list)} correct location", style="bold magenta")
 
     # If only a correct location exist we just get the lens for both correct numbers and location
     elif correct_number_list:
       # remove the set of duplicates if the correct number appears multiple times
       numbers = len(list(set(correct_number_list)))
-      console.print(f"b {numbers} correct number and {len(correct_number_and_location_list)} correct location", style="bold magenta")
+      console.print(f"{numbers} correct number and {len(correct_number_and_location_list)} correct location", style="bold magenta")
 
     # For all correct numbers in the right place
     elif correct_number_and_location_list:
-      console.print(f"c {len(correct_number_and_location_list)} correct number and {len(correct_number_and_location_list)} correct location", style="bold green")
-    
+      console.print(f"{len(correct_number_and_location_list)} correct number and {len(correct_number_and_location_list)} correct location", style="bold green")
+
+      # Print winner if all numbers and locations match up
+      if len(correct_number_and_location_list) == 4 and len(correct_number_and_location_list) == 4:
+        console.print(":tada::partying_face: Winner!!! :tada::partying_face:")
+
     # Add game attempts and attempt count
     game_attempts += f"|  {" ".join(user_input)}  |\n"
     attempt_count += 1
 
   # After breaking out of the loop with quit
-  print("Thanks for playing Mastermind!!!\n")
-  # print("The player had guess a correct number")
-  # print("The player had guessed a correct number and its correct location")
-  # print("The player’s guess was incorrect")
+  user_input = input("Quit or Restart game [q / r]: ")
+  os.system('cls' if os.name == 'nt' else 'clear')
+
+  if user_input.casefold() == "q":
+    print("Thanks for playing Mastermind!!!\n")
+    print(grid)
+    print(game_attempts)
+    print(f"\nAnswer: {cipher}\n")
+  elif user_input.casefold() == "r":
+    game(game_loop = loop_count)
+  else:
+    exit()
 
 # Game function with count being the length of game
-count = 10
-game(count)
+game(loop_count)
