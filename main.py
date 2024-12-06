@@ -94,16 +94,20 @@ def game(game_loop):
     # Clear terminal
     os.system('cls' if os.name == 'nt' else 'clear')
 
+    # If a this list exit that means all numbers are correct. WON THE GAME HERE
     if all_incorrect_list:
       print("all incorrect")
 
+    # Else if a correct number exist and a correct location exist we add the items within the list by getting list len for both
     elif correct_number_list and correct_number_and_location_list:
       print(f"a {len(correct_number_list) + len(correct_number_and_location_list)} correct numbers and {len(correct_number_and_location_list)} correct location")
 
+    # If only a correct location exist we just get the lens for both correct numbers and location
     elif correct_number_list:
-      # correct_number_list[0] should all have the same number so I only need the first one
+      # correct_number_list[0] should all have the same number so I only need the first item in the list technically
       print(f"b {len(correct_number_list)} correct number and {len(correct_number_and_location_list)} correct location")
 
+    # I Think I don't need the below because the second elif handles this... I think
     elif correct_number_and_location_list:
       print(f"c {len(correct_number_and_location_list)} correct number and {len(correct_number_and_location_list)} correct location")
     
@@ -111,7 +115,7 @@ def game(game_loop):
     game_attempts += f"|  {" ".join(user_input)}  |\n"
     attempt_count += 1
 
-
+  # After breaking out of the loop with quit
   print("Thanks for playing Mastermind!!!\n")
   # print("The player had guess a correct number")
   # print("The player had guessed a correct number and its correct location")
