@@ -12,6 +12,8 @@ Installation instructions:
 <br>
 <br>
 
+![mastermind](/assets/mastermind.gif "mastermind")
+
 Game rules
 - At the start of the game the computer will randomly select a pattern of four different
 numbers from a total of 8 different numbers.
