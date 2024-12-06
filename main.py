@@ -19,17 +19,30 @@ def game(game_loop):
 
   # Grid
   while game_loop != 0:
-    pin = "\u26AB"
-    grid = game_loop * f"\n| {pin} {pin} {pin} {pin} |"
+    pin = "\u2686"
+    grid = game_loop * f"\n|  {pin}   {pin}   {pin}   {pin}  |"
     print(f"\nAttempts left: {game_loop}")
     print(grid)
     print(game_attempts)
     game_loop -= 1
 
     print(f"\n{codemaker}\n")
+    print("To end game type: exit")
 
     # User Input
-    user_input = input("Please guess 4 random numbers: ")
+    try:
+      user_input = input("Please guess 4 random numbers: ")
+      os.system('cls' if os.name == 'nt' else 'clear')
+
+      if user_input == "exit":
+        break
+
+      if len(user_input) != 7 or " " not in user_input or int not in user_input:
+        print(f"{user_input} is incorrect. Please try again. Ex: 8 6 7 5")
+        game(game_loop)
+    except:
+      print("Game starting over")
+
     codebreaker = user_input.split()
 
     all_incorrect = ""
@@ -88,13 +101,14 @@ def game(game_loop):
       print(f"c {len(correct_number_and_location_list)} correct number and {len(correct_number_and_location_list)} correct location")
     
     # Add game attempts and attempt count
-    game_attempts += f"\n{"".join(user_input)}"
+    game_attempts += f"|  {" ".join(user_input)}  |\n"
     attempt_count += 1
 
-  if True:
-    print("The player had guess a correct number")
-    print("The player had guessed a correct number and its correct location")
-    print("The player’s guess was incorrect")
+
+  print("Thanks for playing Mastermind!!!\n")
+  # print("The player had guess a correct number")
+  # print("The player had guessed a correct number and its correct location")
+  # print("The player’s guess was incorrect")
 
 # Game function with count being the length of game
 count = 10
