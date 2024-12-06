@@ -44,7 +44,7 @@ def game(game_loop):
 
       # Check lenght of input, spaces provided, if input is converted is it an int
       if len(user_input) != 7 or " " not in user_input or int != type(int(user_input.replace(" ", ""))):
-        print(f"{user_input} is incorrect. Please try again. Ex: 8 6 7 5")
+        console.print(f"{user_input} is incorrect. Please try again. Ex: 8 6 7 5", style="bold red")
         game(game_loop)
     except:
       print("Game starting over")
