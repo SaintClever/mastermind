@@ -71,17 +71,20 @@ def game(game_loop):
 
       # Logic for having a correct number in the cipher but in the incorrect location
       elif player_guess[i] in cipher and player_guess[i] != cipher[i]:
-        correct_number += player_guess[i]
-        correct_number_list = list(correct_number)
+        # correct_number += player_guess[i]
+        # correct_number_list = list(correct_number)
+        correct_number_list.append(player_guess[i])
 
-      # logic for matching the the correction number location
+      # logic for matching the correct number location
       elif player_guess[i] == cipher[i]:
-        correct_number_and_location += player_guess[i]
-        correct_number_and_location_list = list(correct_number_and_location)
+        # correct_number_and_location += player_guess[i]
+        # correct_number_and_location_list = list(correct_number_and_location)
+        correct_number_and_location_list.append(player_guess[i])
 
         # however if the locations or greater than one that eventually means the number matches as well?
         if len(correct_number_and_location) > 1:
-          correct_number_and_location_list = list(correct_number_and_location)
+          # correct_number_and_location_list = list(correct_number_and_location)
+          correct_number_and_location_list.append(player_guess[i])
 
     # # For testing output
     # print("a", all_incorrect)
@@ -95,7 +98,7 @@ def game(game_loop):
     print("h", correct_number_and_location_list)
 
     # Clear terminal
-    os.system('cls' if os.name == 'nt' else 'clear')
+    # os.system('cls' if os.name == 'nt' else 'clear')
 
     # If a this list exit that means all numbers are correct. WON THE GAME HERE
     if all_incorrect_list:
@@ -103,12 +106,19 @@ def game(game_loop):
 
     # Else if a correct number exist and a correct location exist we add the items within the list by getting list len for both
     elif correct_number_list and correct_number_and_location_list:
-      console.print(f"a {len(correct_number_list) + len(correct_number_and_location_list)} correct numbers and {len(correct_number_and_location_list)} correct location", style="bold magenta")
+
+      if correct_number_list[0] not in correct_number_and_location_list:
+        numbers = len(correct_number_list) + len(correct_number_and_location_list)
+      else:
+        numbers = len(correct_number_and_location_list)
+
+      console.print(f"a {numbers} correct numbers and {len(correct_number_and_location_list)} correct location", style="bold magenta")
 
     # If only a correct location exist we just get the lens for both correct numbers and location
     elif correct_number_list:
-      # correct_number_list[0] should all have the same number so I only need the first item in the list technically
-      console.print(f"b {len(correct_number_list)} correct number and {len(correct_number_and_location_list)} correct location", style="bold magenta")
+      # remove the set of duplicates if the correct number appears multiple times
+      numbers = len(list(set(correct_number_list)))
+      console.print(f"b {numbers} correct number and {len(correct_number_and_location_list)} correct location", style="bold magenta")
 
     # For all correct numbers in the right place
     elif correct_number_and_location_list:
