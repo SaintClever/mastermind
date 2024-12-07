@@ -23,6 +23,7 @@ class Mastermind():
 
   def start_game(self):
     remaining_attempts = self.attempts
+    self.clear_terminal()
 
     while remaining_attempts != 0:
       user_input = input("input: ").strip()
