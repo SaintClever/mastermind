@@ -2,7 +2,7 @@
 
 Installation instructions:
   - Create a random folder named "mastermind"
-  - Download the and main.py and requirements.txt into your mastermind folder
+  - Download the main.py and requirements.txt into your mastermind folder
   - Within your code editor or terminal navigate to your mastermind folder and create a virtual env: <code>python -m venv venv</code> or <code>python3 -m venv venv</code>
   - Activate your virtual env:
     - mac: <code>source venv/bin/activate</code>
