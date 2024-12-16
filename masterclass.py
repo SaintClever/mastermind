@@ -48,10 +48,16 @@ class Mastermind():
 
   def cipher_logic(self, player_guess):
     cipher = self.request()
+    all_incorrect = correct_number = correct_location = []
 
     for i in range(len(cipher)):
       if player_guess[i] != cipher[i] and player_guess[i] not in cipher:
-        print(player_guess)
+        all_incorrect.append(player_guess[i])
+      elif player_guess[i] != cipher[i] and  player_guess[i] in cipher:
+        correct_number.append(player_guess[i])
+      else:
+        correct_location.append(player_guess[i])
+
       
     guesses += f"| {" ".join(player_guess)} |\n"
     print(gueesed)

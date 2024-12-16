@@ -29,11 +29,10 @@ def game(game_loop):
     print(game_attempts)
     game_loop -= 1
 
-    # print(f"\n{cipher}\n")
-    print("To quit or restart the game type: exit")
-
     # User Input
     try:
+      # print(f"\n{cipher}\n")
+      print("To quit or restart the game type: exit")
       user_input = input("Please guess 4 random numbers: ")
       os.system('cls' if os.name == 'nt' else 'clear')
 
@@ -43,7 +42,7 @@ def game(game_loop):
       # Check lenght of input, spaces provided, if input is converted is it an int
       if len(user_input) != 7 or " " not in user_input or int != type(int(user_input.replace(" ", ""))):
         console.print(f"{user_input} is incorrect. Please try again. Ex: 8 6 7 5", style="bold red")
-        game(game_loop)
+        continue
     except:
       print("Game starting over")
 
@@ -58,7 +57,7 @@ def game(game_loop):
       if player_guess[i] != cipher[i] and player_guess[i] not in cipher:
         all_incorrect.append(player_guess[i])
       # Logic for having a correct number in the cipher but in the incorrect location
-      elif player_guess[i] in cipher and player_guess[i] != cipher[i]:
+      elif player_guess[i] != cipher[i] and  player_guess[i] in cipher:
         correct_number.append(player_guess[i])
       # logic for matching the correct number location
       else:
